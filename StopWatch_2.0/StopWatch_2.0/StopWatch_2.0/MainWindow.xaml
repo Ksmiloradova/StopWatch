@@ -1,0 +1,75 @@
+﻿<Window x:Class="StopWatch_2._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StopWatch_2._0"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <!-- Контейнер для элементов. 3 строки, 4 столбца. -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Разметка секундного циферблата. -->
+        <Viewbox Grid.ColumnSpan="2">
+            <Canvas Width="200" Height="200">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="100" Y="100"/>
+                </Canvas.RenderTransform>
+                <Path Fill="Transparent" Stroke="Black" StrokeThickness="3"
+StrokeDashArray="0 3.14159" StrokeDashCap ="Round">
+                    <Path.Data>
+                        <EllipseGeometry RadiusX="90" RadiusY="90"/>
+                    </Path.Data>
+                </Path>
+                <Path Data="M 0 10 L 0 -80" StrokeEndLineCap="Round"
+Stroke="Black" StrokeThickness="2" >
+                    <Path.RenderTransform>
+                        <RotateTransform x:Name="rotateSecond"/>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+        
+        <!-- Элементы интерфейса пользователя. -->
+        
+        <!-- Кнопка "Старт"("Стоп"). -->
+        <Button x:Name="StartStop" Grid.Row="1" Content ="Старт"
+FontSize="20" FontWeight="Black" Padding="5"
+HorizontalAlignment="Center" VerticalAlignment="Center"
+Click="StartStop_Click"/>
+        
+        <!-- Текстовое поле для отображения часов и минут. -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Промежуток"
+FontSize="20" FontWeight="Black" Name="DeltaTime1"
+HorizontalAlignment="Right" VerticalAlignment="Center" />
+        
+        <!-- Текстовое поле для отображения секунд и миллисекунд. -->
+        <TextBlock Grid.Row="2" Grid.Column="1" Text=" времени"
+FontSize="20" FontWeight="Black" Name="DeltaTime"
+HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <!-- Кнопка "Круг". -->
+        <Button x:Name="Cycle" Grid.Row="1" Grid.Column="1" Content ="Круг" IsEnabled="False"
+FontSize="20" FontWeight="Black" Padding="5"
+HorizontalAlignment="Center" VerticalAlignment="Center"
+Click="Cycle_Click"/>
+
+        <!-- Текстовое поле для отображения информации о кругах. -->
+        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" 
+FontSize="20" FontWeight="Black" Name="CyclesInformation"
+HorizontalAlignment="Center" VerticalAlignment="Top" />
+    </Grid>
+
+</Window>
